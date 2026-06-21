@@ -27,10 +27,40 @@ class HeaderLoader {
             }
             
             container.innerHTML = headerHTML;
-            
-            // 设置当前页面高亮
+
+            // 小屏幕：绑定移动菜单开关
+            const mobileBtn = container.querySelector('#mobile-menu-btn');
+            const mobileNav = container.querySelector('#mobile-nav');
+            if (mobileBtn && mobileNav) {
+                const closeMobileMenu = () => {
+                    mobileNav.classList.remove('open');
+                    mobileBtn.setAttribute('aria-expanded', 'false');
+                    mobileNav.setAttribute('aria-hidden', 'true');
+                };
+
+                mobileBtn.addEventListener('click', () => {
+                    const opened = mobileNav.classList.toggle('open');
+                    mobileBtn.setAttribute('aria-expanded', opened);
+                    mobileNav.setAttribute('aria-hidden', !opened);
+                });
+                // 点击移动端链接后自动关闭菜单
+                mobileNav.querySelectorAll('a').forEach(a => {
+                    a.addEventListener('click', () => {
+                        closeMobileMenu();
+                    });
+                });
+                // 初始化时关闭移动菜单，避免桌面或切换时残留
+                closeMobileMenu();
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768) {
+                        closeMobileMenu();
+                    }
+                });
+            }
+
+            // 设置当前页面高亮（支持桌面和移动菜单）
             this.setActiveNav();
-            
+
             console.log('Header模块加载成功');
         } catch (error) {
             console.error('加载header模块失败:', error);
@@ -42,14 +72,14 @@ class HeaderLoader {
      */
     setActiveNav() {
         const currentPath = window.location.pathname;
-        const navLinks = document.querySelectorAll('.nav a');
-        
+        const navLinks = document.querySelectorAll('.nav a, .mobile-nav a');
+
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
             if (href === '/' && currentPath === '/') {
-                link.parentElement.classList.add('current-nav');
+                if (link.parentElement) link.parentElement.classList.add('current-nav');
             } else if (href !== '/' && currentPath.includes(href.replace('../', '').replace('pages/', ''))) {
-                link.parentElement.classList.add('current-nav');
+                if (link.parentElement) link.parentElement.classList.add('current-nav');
             }
         });
     }

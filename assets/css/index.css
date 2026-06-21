@@ -75,3 +75,121 @@
     flex: 1;
     padding-right: 80px;
 }
+
+@media (max-width: 1200px) {
+    .sec-2 {
+        padding: 60px 20px;
+    }
+    .sec-1 {
+        padding: 50px 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .sec-1-left,
+    .sec-1-right,
+    .sec-2-left,
+    .sec-2-img,
+    .sec-3-text,
+    .sec-3-img-wrap {
+        width: 100%;
+    }
+    .sec-1 {
+        padding: 40px 16px;
+    }
+    .sec-1-left {
+        width: 100%;
+    }
+    .sec-2-left {
+        width: 100%;
+        padding-left: 0;
+    }
+    .sec-2-right {
+        width: 100%;
+    }
+    .sec-2-img {
+        height: auto;
+        margin: 0 0 20px;
+    }
+    .sec-2-img:nth-child(2),
+    .sec-2-img:nth-child(3) {
+        margin-top: 0;
+        margin-left: 0;
+    }
+    .sec-3-img-wrap {
+        width: 100%;
+    }
+    .sec-3-img-wrap img {
+        width: 50%;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .sec-1 {
+        padding: 30px 14px;
+    }
+    .sec-2 {
+        padding: 50px 14px;
+    }
+    .sec-3-inner {
+        flex-direction: column;
+    }
+    .sec-3-text {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+    .sec-3-img-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .sec-3-img-wrap img {
+        width: 100%;
+        height: auto;
+    }
+    .sec-1-left,
+    .sec-1-right,
+    .sec-2-left,
+    .sec-2-right {
+        width: 100%;
+    }
+    .title h2 {
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+    }
+    .sec-1-text,
+    .sec-1-text p,
+    .sec-3-text p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+    .sec-2-left .title {
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .banner-wrap {
+        height: 300px;
+    }
+    .banner-text h1 {
+        font-size: 2.4rem;
+    }
+    .title h2 {
+        font-size: 2rem;
+    }
+    .sec-1 {
+        padding: 24px 12px;
+    }
+    .sec-2 {
+        padding: 40px 12px;
+    }
+    .title h3 {
+        width: auto;
+        font-size: 1rem;
+    }
+    .sec-1-img,
+    .sec-2-img {
+        border-width: 1px;
+    }
+}

@@ -80,31 +80,34 @@
 }
 
 .cute-1-inner {
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.cute-1-img{
-    width: 19%;
-    margin-bottom: 10px;
-}
-
-.cute-1-inner{
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
     margin-bottom: 60px;
 }
 
 .cute-1-img{
-    height: 228px;
+    width: 100%;
     box-sizing: border-box;
     transition: all .3s linear;
 }
 
 .cute-1-img img{
-    height: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
     transition: all .3s linear;
     box-sizing: border-box;
     cursor: pointer;
     box-shadow: 0 0 8px #dedede;
+    object-fit: cover;
+}
+
+.cute-1-img:hover img{
+    border-radius: 50%;
+}
+
+    }
 }
 
 .cute-1-img:hover img{

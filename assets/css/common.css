@@ -27,8 +27,19 @@ a{
     margin: 0 auto;
 }
 
+.container{
+    margin: 0 80px;
+}
+
 .flexbox{
     display: flex;
+    flex-wrap: wrap;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .title{
@@ -46,6 +57,122 @@ a{
     border: 1px solid #fcee50;
     border-top: none;
     background-color: #75b36dda;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        margin: 0 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 0 16px;
+    }
+    .container2 {
+        padding: 0 8px;
+    }
+    .top-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    .top-logo {
+        width: auto;
+        padding: 12px 0;
+    }
+    .nav-wrap {
+        width: 100%;
+    }
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .nav li {
+        margin: 0 6px 8px;
+    }
+    .nav li a {
+        display: block;
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    .banner-wrap {
+        height: 340px;
+    }
+    .banner-text {
+        padding: 0 14px;
+    }
+    .banner-text h1 {
+        font-size: clamp(2.4rem, 8vw, 3.8rem);
+    }
+
+    /* Mobile menu styles */
+    .mobile-menu-btn {
+        display: none;
+        background: transparent;
+        border: none;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10002;
+    }
+    .mobile-menu-btn .hamburger {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: #324e2f;
+        position: relative;
+    }
+    .mobile-menu-btn .hamburger::before,
+    .mobile-menu-btn .hamburger::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 22px;
+        height: 2px;
+        background: #324e2f;
+    }
+    .mobile-menu-btn .hamburger::before { top: -7px; }
+    .mobile-menu-btn .hamburger::after { top: 7px; }
+
+    .mobile-nav {
+        display: none;
+        position: fixed;
+        top: 56px;
+        right: 16px;
+        width: min(220px, 70vw);
+        background: rgba(255, 255, 255, 0.28);
+        backdrop-filter: blur(12px);
+        color: #333;
+        border: 1px solid rgba(200,200,200,0.35);
+        border-radius: 16px;
+        box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+        z-index: 10001;
+        overflow-y: auto;
+        max-height: 75vh;
+    }
+    .mobile-nav.open { display: block!important; }
+    .mobile-nav ul { padding: 0; margin: 0; list-style: none; }
+    .mobile-nav li { border-bottom: 1px solid rgba(200,200,200,0.4); }
+    .mobile-nav li:last-child { border-bottom: none; }
+    .mobile-nav a { display: block; padding: 14px 18px; color: inherit; }
+
+    .mobile-menu-btn { display: flex; position: absolute; top: 12px; right: 16px; z-index: 10002; }
+    .nav-wrap { display: none; }
+    .mobile-nav { position: absolute; top: 56px; right: 16px; }
+    .top-inner { padding: 8px 0; }
+    #header { box-shadow: none; }
+
+    .banner-text p {
+        font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-menu-btn { display: none !important; }
+    .mobile-nav { display: none !important; }
 }
 .atlas-title{
     position: relative;
@@ -99,9 +226,14 @@ a{
     background-color: #ffffff;
     box-shadow: 0 2px 8px rgba(109, 109, 109, 0.4);
 }
+#header .container,
+#header .top-inner {
+    overflow: visible;
+}
 .top-inner{
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
 }
 .top-logo{
     width: 350px;
@@ -110,17 +242,19 @@ a{
 .top-logo h2{
     font-size: 26px;
     font-family: 'Times New Roman', Times, serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 }
 .top-logo img{
     width: 60px;
     height: 60px;
-    margin-right: 10px;
     border-radius: 50%;
-    vertical-align: middle;
     object-fit: cover;
 }
-t.top-logo span{
-    vertical-align: middle;
+.top-logo span{
+    display: inline-block;
+    line-height: 1.2;
 }
 
 .nav-wrap{
@@ -128,6 +262,9 @@ t.top-logo span{
 }
 .nav{
     justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 .nav li{
     height: 50px;
@@ -135,8 +272,6 @@ t.top-logo span{
     margin: 0 10px;
     text-align: center;
     box-sizing: border-box;
-    /* display: inline; */
-    /* justify-content: flex-end; */
 }
 .nav li a{
     display: inline-block;
@@ -145,11 +280,11 @@ t.top-logo span{
     font-size: 16px;
     line-height: 50px;
 }
-.nav li :hover{
+.nav li:hover{
     background-color: #fff152;
     border-radius: 5px;
 }
-.nav li :hover a{
+.nav li:hover a{
     text-decoration: underline;
 }
 .current-nav{
@@ -173,9 +308,78 @@ t.top-logo span{
     transform: translateY(-50%);
     color: #fff;
     text-shadow: 0 0 10px #000;
+    padding: 0 16px;
 }
 .banner-text h1{
     font-size: 80px;
+    line-height: 1.05;
+}
+.banner-text p{
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+}
+
+@media (max-width: 992px) {
+    .top-logo {
+        width: auto;
+    }
+    .top-logo h2 {
+        font-size: 20px;
+    }
+    .top-logo img {
+        width: 50px;
+        height: 50px;
+    }
+    .nav li {
+        margin: 6px 4px;
+    }
+    .nav li a {
+        font-size: 14px;
+        line-height: 40px;
+    }
+    .banner-wrap {
+        height: 360px;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-inner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .nav {
+        justify-content: center;
+    }
+    .nav li {
+        margin: 4px 4px;
+        min-width: 140px;
+    }
+    .nav li a {
+        line-height: 42px;
+        padding: 0 8px;
+    }
+    .banner-wrap {
+        height: 320px;
+    }
+    .banner-text h1 {
+        font-size: clamp(2.2rem, 7vw, 3.6rem);
+    }
+}
+
+@media (max-width: 576px) {
+    .nav li {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+    .nav li a {
+        font-size: 13px;
+        line-height: 38px;
+    }
+    .banner-wrap {
+        height: 280px;
+    }
+    .banner-text h1 {
+        font-size: 2.4rem;
+    }
 }
 
 #footer{
